@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Filmgoer</string>
+
+    <string name="service_label">Filmgoer Accessibility Service</string>
+    <string name="service_description">Reads the screen content and prepares the best recommendations</string>
+
 </resources>
