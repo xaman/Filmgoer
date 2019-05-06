@@ -4,14 +4,17 @@ import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo.*
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
-import com.martinchamarro.filmgoer.extensions.tree
-import com.martinchamarro.filmgoer.extensions.typeValue
+import com.martinchamarro.filmgoer.data.DataInjector
+import com.martinchamarro.filmgoer.data.parser.NodeInfoParser
 
 class FilmgoerAccessibilityService : AccessibilityService() {
 
     companion object {
         private val TAG = FilmgoerAccessibilityService::class.java.simpleName
     }
+
+    private val parser by lazy { NodeInfoParser() }
+    private val repository by lazy { DataInjector.mediaRepository }
 
     override fun onCreate() {
         super.onCreate()
@@ -46,9 +49,11 @@ class FilmgoerAccessibilityService : AccessibilityService() {
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event?.run {
-            Log.d(TAG, "Accessibility event: $typeValue")
-            Log.v(TAG, toString())
-            source?.tree()
+//            Log.d(TAG, "Accessibility event: $typeValue")
+//            Log.v(TAG, toString())
+            val media = parser.parse(source)
+            repository.putAll(media)
+            Log.d(TAG, repository.toString())
         }
     }
 
