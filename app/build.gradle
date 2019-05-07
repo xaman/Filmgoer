@@ -51,6 +51,8 @@ dependencies {
     implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.corektx
     implementation rootProject.ext.dependencies.constraintlayout
+    implementation rootProject.ext.dependencies.koin
+    implementation rootProject.ext.dependencies.koinscope
 
     testImplementation rootProject.ext.testingDependencies.junit
     androidTestImplementation rootProject.ext.testingDependencies.testext

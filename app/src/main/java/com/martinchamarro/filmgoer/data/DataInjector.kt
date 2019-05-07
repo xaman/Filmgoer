@@ -1,9 +1,9 @@
 package com.martinchamarro.filmgoer.data
 
-import com.martinchamarro.filmgoer.domain.MediaRepository
+import com.martinchamarro.filmgoer.domain.Media
 
 object DataInjector {
 
-    val mediaRepository: MediaRepository by lazy { MediaRepositoryImpl() }
+    val cache: Cache<Media> by lazy { InMemoryCache() }
 
 }

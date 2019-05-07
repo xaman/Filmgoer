@@ -1,12 +1,17 @@
 package com.martinchamarro.filmgoer.data
 
 import com.martinchamarro.filmgoer.domain.Media
-import com.martinchamarro.filmgoer.domain.MediaRepository
 import com.martinchamarro.filmgoer.extensions.letIfNotNullNorEmpty
 
-class MediaRepositoryImpl : MediaRepository {
+class InMemoryCache : Cache<Media> {
 
     private val content = mutableMapOf<String, Media>()
+
+    override fun size() = content.size
+
+    override fun isEmpty() = content.isEmpty()
+
+    override fun contains(item: Media): Boolean = content[item.name] != null
 
     override fun getAll(): List<Media> = content.values.toList()
 
@@ -20,6 +25,6 @@ class MediaRepositoryImpl : MediaRepository {
 
     override fun clear() = content.clear()
 
-    override fun toString() = "MediaRepositoryImpl(${content.keys.joinToString(separator = ", ")})"
+    override fun toString() = "InMemoryCache(${content.keys.joinToString(separator = ", ")})"
 
 }
