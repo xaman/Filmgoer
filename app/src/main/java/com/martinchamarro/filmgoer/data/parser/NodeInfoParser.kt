@@ -1,24 +1,24 @@
 package com.martinchamarro.filmgoer.data.parser
 
 import android.view.accessibility.AccessibilityNodeInfo
-import com.martinchamarro.filmgoer.domain.Media
+import com.martinchamarro.filmgoer.domain.model.Title
 import com.martinchamarro.filmgoer.extensions.safelyGetChild
 
 private const val ID_MOVIE_BOXART = "movie_boxart"
 
-class NodeInfoParser : Parser<AccessibilityNodeInfo?, List<Media>> {
+class NodeInfoParser : Parser<AccessibilityNodeInfo?, List<Title>> {
 
-    override fun parse(node: AccessibilityNodeInfo?): List<Media> {
-        val list = mutableListOf<Media>()
-        parse(node, list)
+    override fun parse(input: AccessibilityNodeInfo?): List<Title> {
+        val list = mutableListOf<Title>()
+        parse(input, list)
         return list
     }
 
-    private fun parse(node: AccessibilityNodeInfo?, list: MutableList<Media>) {
-        node?.run {
+    private fun parse(input: AccessibilityNodeInfo?, list: MutableList<Title>) {
+        input?.run {
             // Convert the node to a media object
             val media = when {
-                isCarouselItem() -> contentDescription?.run { Media(toString()) }
+                isCarouselItem() -> contentDescription?.run { toString() }
                 else -> null
             }
             // Add the media to the list

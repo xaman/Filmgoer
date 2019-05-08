@@ -15,7 +15,7 @@ class FilmgoerApplication : Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger(level = Level.DEBUG)
+            androidLogger(level = Level.ERROR)
             androidContext(this@FilmgoerApplication)
             modules(dataModule)
         }

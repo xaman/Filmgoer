@@ -28,7 +28,7 @@ android {
             versionNameSuffix '-debug'
             debuggable true
             buildConfigField "boolean", "DEBUG_MODE", "true"
-            buildConfigField "String", "TMD_API_KEY", '"3202eb5aa836427005ced3a158c19d0b"'
+            buildConfigField "String", "OMDB_API_KEY", '"1721932f"'
         }
         release {
             minifyEnabled true
@@ -36,12 +36,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable false
             buildConfigField "boolean", "DEBUG_MODE", "false"
-            buildConfigField "String", "TMD_API_KEY", '"<<API_KEY>>"'
+            buildConfigField "String", "OMDB_API_KEY", '"<<API_KEY>>"'
 
             zipAlignEnabled true
             signingConfig signingConfigs.release
         }
     }
+
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
+
 }
 
 dependencies {
@@ -49,10 +55,17 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies.kotlin
     implementation rootProject.ext.dependencies.appcompat
-    implementation rootProject.ext.dependencies.corektx
-    implementation rootProject.ext.dependencies.constraintlayout
+    implementation rootProject.ext.dependencies.core_ktx
+    implementation rootProject.ext.dependencies.constraint_layout
     implementation rootProject.ext.dependencies.koin
-    implementation rootProject.ext.dependencies.koinscope
+    implementation rootProject.ext.dependencies.koin_scope
+    implementation rootProject.ext.dependencies.gson
+    implementation rootProject.ext.dependencies.retrofit
+    implementation rootProject.ext.dependencies.converter_gson
+    implementation rootProject.ext.dependencies.retrofit_rxjava2
+    implementation rootProject.ext.dependencies.logging_interceptor
+    implementation rootProject.ext.dependencies.rxandroid
+    implementation rootProject.ext.dependencies.rxjava
 
     testImplementation rootProject.ext.testingDependencies.junit
     androidTestImplementation rootProject.ext.testingDependencies.testext
