@@ -15,20 +15,26 @@ class MoviesRepositoryImpl(
 
     override fun search(titles: List<Title>) {
         titles
-            .filter { !pending.contains(it) && !cache.containsKey(it) }
+            .filter { shouldRequestMovie(it) }
             .map { pending.add(it); it }
             .forEach { title ->
                 api.search(title).subscribe(
-                    { entity ->
-                        cache.put(title, entity)
-                        pending.remove(title)
-                        Log.d(javaClass.simpleName, "${cache.size()} movies -> $entity")
-                    },
-                    { error ->
-                        pending.remove(title)
-                        Log.e(javaClass.simpleName, error.message)
-                    })
+                    { entity -> onSearchSuccess(title, entity) },
+                    { error -> onSearchError(title, error) })
             }
     }
+
+    private fun onSearchSuccess(title: String, entity: MovieEntity) {
+        cache.put(title, entity)
+        pending.remove(title)
+        Log.d(javaClass.simpleName, "${cache.size()} movies -> $entity")
+    }
+
+    private fun onSearchError(title: String, error: Throwable) {
+        pending.remove(title)
+        Log.e(javaClass.simpleName, error.message)
+    }
+
+    private fun shouldRequestMovie(title: String) = !pending.contains(title) && !cache.containsKey(title)
 
 }
