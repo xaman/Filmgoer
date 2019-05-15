@@ -18,7 +18,9 @@ val dataModule = module {
 
     factory<Cache<Title, MovieEntity>> { InMemoryCache() }
 
-    single<MoviesRepository> { MoviesRepositoryImpl(get(), get(), get()) }
+    factory { Schedulers.io() }
+
+    single<MoviesRepository> { MoviesRepositoryImpl(get(), get(), get(), get()) }
 
     single { SearchServicesFactory() }
 
