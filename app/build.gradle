@@ -66,6 +66,7 @@ dependencies {
     implementation rootProject.ext.dependencies.logging_interceptor
     implementation rootProject.ext.dependencies.rxandroid
     implementation rootProject.ext.dependencies.rxjava
+    implementation rootProject.ext.dependencies.lazydb
 
     testImplementation rootProject.ext.testingDependencies.junit
     androidTestImplementation rootProject.ext.testingDependencies.testext

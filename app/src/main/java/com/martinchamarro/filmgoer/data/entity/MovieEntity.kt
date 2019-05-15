@@ -1,7 +1,9 @@
 package com.martinchamarro.filmgoer.data.entity
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class MovieEntity(
         @SerializedName("Title") val title: String,
         @SerializedName("Year") val year: String,
@@ -25,6 +27,8 @@ data class MovieEntity(
         @SerializedName("Production") val production: String,
         @SerializedName("Website") val website: String,
         @SerializedName("Ratings") val ratings: List<RatingEntity>) {
+
+    val id get() = title
 
     override fun toString(): String {
         return "$imdbRating - $title ($year)"
