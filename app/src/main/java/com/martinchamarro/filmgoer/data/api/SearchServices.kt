@@ -1,6 +1,7 @@
 package com.martinchamarro.filmgoer.data.api
 
 import com.martinchamarro.filmgoer.data.entity.MovieEntity
+import com.martinchamarro.filmgoer.domain.model.Title
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -15,7 +16,7 @@ interface SearchServices {
     @Headers(HEADER_CACHE_ONE_DAY)
     @GET("/")
     fun searchMovieByTitle(
-            @Query("t") title: String
+            @Query("t") title: Title
     ): Observable<MovieEntity>
 
 }

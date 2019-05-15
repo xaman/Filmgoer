@@ -77,7 +77,7 @@ class SearchServicesFactory {
 
     private fun createLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor { message -> Log.d(SEARCH_LOGGER_TAG, message) }
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        interceptor.level = HttpLoggingInterceptor.Level.BASIC
         return interceptor
     }
 

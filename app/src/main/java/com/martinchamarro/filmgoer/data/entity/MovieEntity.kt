@@ -23,4 +23,10 @@ data class MovieEntity(
         @SerializedName("imdbID") val imdbId: String,
         @SerializedName("Type") val type: String,
         @SerializedName("Production") val production: String,
-        @SerializedName("Website") val website: String)
+        @SerializedName("Website") val website: String) {
+
+    override fun toString(): String {
+        return "$imdbRating - $title ($year)"
+    }
+
+}
