@@ -67,6 +67,7 @@ dependencies {
     implementation rootProject.ext.dependencies.rxandroid
     implementation rootProject.ext.dependencies.rxjava
     implementation rootProject.ext.dependencies.lazydb
+    implementation rootProject.ext.dependencies.hover
 
     testImplementation rootProject.ext.testingDependencies.junit
     androidTestImplementation rootProject.ext.testingDependencies.testext
