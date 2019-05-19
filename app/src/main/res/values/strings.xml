@@ -4,4 +4,7 @@
     <string name="service_label">Filmgoer Accessibility Service</string>
     <string name="service_description">Reads the screen content and prepares the best recommendations</string>
 
+    <string name="accessibility_button_text">Enable accessibility service</string>
+    <string name="permissions_button_text">Grant overlay permission</string>
+
 </resources>
