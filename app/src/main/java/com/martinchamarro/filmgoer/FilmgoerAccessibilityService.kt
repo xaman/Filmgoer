@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import com.martinchamarro.filmgoer.data.parser.NodeInfoParser
 import com.martinchamarro.filmgoer.domain.MoviesRepository
+import com.martinchamarro.filmgoer.presentation.movies.MoviesRankingsScreenService
 import org.koin.android.ext.android.inject
 
 class FilmgoerAccessibilityService : AccessibilityService() {
@@ -54,6 +55,7 @@ class FilmgoerAccessibilityService : AccessibilityService() {
 //            Log.v(TAG, toString())
             val media = parser.parse(source)
             repository.search(media)
+            MoviesRankingsScreenService.startIfNeeded(applicationContext)
         }
     }
 
